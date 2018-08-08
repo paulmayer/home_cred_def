@@ -1,4 +1,6 @@
 .*
+/wip/*
 !/.gitignore
 *.txt
 *.pyc
+*.png
