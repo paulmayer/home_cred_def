@@ -14,10 +14,10 @@ def handle_missing_values(missing_vals):
     def _handle_missing(f):
         @wraps(f)
         def func_wrapper(*args, **kwargs):
-            if kwargs['s'] in missing_vals:
+            if ('s' in kwargs and kwargs['s'] in missing_vals) or args[0] in missing_vals:
                 return None
             else:
-                return f(**kwargs)
+                return f(*args, **kwargs)
         return func_wrapper
     return _handle_missing
 
@@ -67,22 +67,22 @@ _application_field_converters = {
     "days_registration": float_to_int,
     "days_id_publish": convert_int,
     "own_car_age": float_to_int,
-    "flag_mobil": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_work_phone": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_emp_phone": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_cont_mobile": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_phone": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_email": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
+    "flag_mobil": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_work_phone": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_emp_phone": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_cont_mobile": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_phone": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_email": partial(convert_bool, true_value="1", false_value="0"),
     "cnt_fam_members": float_to_int,
     "region_rating_client": convert_int,
     "region_rating_client_w_city": convert_int,
     "hour_appr_process_start": convert_int,
-    "reg_region_not_live_region": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "reg_region_not_work_region": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "live_region_not_work_region": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "reg_city_not_live_city": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "reg_city_not_work_city": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "live_city_not_work_city": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
+    "reg_region_not_live_region": partial(convert_bool, true_value="1", false_value="0"),
+    "reg_region_not_work_region": partial(convert_bool, true_value="1", false_value="0"),
+    "live_region_not_work_region": partial(convert_bool, true_value="1", false_value="0"),
+    "reg_city_not_live_city": partial(convert_bool, true_value="1", false_value="0"),
+    "reg_city_not_work_city": partial(convert_bool, true_value="1", false_value="0"),
+    "live_city_not_work_city": partial(convert_bool, true_value="1", false_value="0"),
     "ext_source_1": convert_numeric,
     "ext_source_2": convert_numeric,
     "ext_source_3": convert_numeric,
@@ -133,26 +133,26 @@ _application_field_converters = {
     "obs_60_cnt_social_circle": float_to_int,
     "def_60_cnt_social_circle": float_to_int,
     "days_last_phone_change": float_to_int,
-    "flag_document_2": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_3": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_4": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_5": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_6": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_7": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_8": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_9": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_10": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_11": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_12": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_13": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_14": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_15": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_16": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_17": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_18": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_19": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_20": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
-    "flag_document_21": partial(convert_bool, true_value="1", false_value="0", missing_symbols=MISSING_VALS),
+    "flag_document_2": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_3": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_4": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_5": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_6": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_7": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_8": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_9": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_10": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_11": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_12": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_13": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_14": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_15": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_16": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_17": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_18": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_19": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_20": partial(convert_bool, true_value="1", false_value="0"),
+    "flag_document_21": partial(convert_bool, true_value="1", false_value="0"),
     "amt_req_credit_bureau_hour": float_to_int,
     "amt_req_credit_bureau_day": float_to_int,
     "amt_req_credit_bureau_week": float_to_int,
@@ -267,7 +267,6 @@ def _load_data(fn, session, target_table, converter, nbatch=10000):
             objs.append(target_table(**flds))
 
             if len(objs) == nbatch:
-                print("inserting")
                 session.bulk_save_objects(objs)
                 objs = []
 
