@@ -1,7 +1,7 @@
 .*
 /wip/*
 !/.gitignore
-!/spec-file.txt
+!spec-file.txt
 *.txt
 *.pyc
 *.png
