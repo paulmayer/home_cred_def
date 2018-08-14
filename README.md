@@ -3,6 +3,7 @@
 
 Table of Contents:
 * [Introduction](#intro)
+* [Installation](#installation)
 
 ## <a id='intro'></a> Introduction
 ------------
